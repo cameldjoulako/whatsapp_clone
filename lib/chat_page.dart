@@ -30,7 +30,9 @@ class ChatPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
           ),
           icon: Icon(
             Icons.arrow_back_ios,
@@ -51,7 +53,7 @@ class ChatPage extends StatelessWidget {
         backgroundColor: backgroundColor,
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(25, 16, 15, 10),
+        padding: EdgeInsets.fromLTRB(25, 18, 15, 30),
         decoration: BoxDecoration(
           color: conversationColor,
           borderRadius: BorderRadius.only(
@@ -60,7 +62,7 @@ class ChatPage extends StatelessWidget {
           ),
         ),
         margin: EdgeInsets.only(top: 10),
-        child: ChatingSection(),
+        child: SingleChildScrollView(child: ChatingSection()),
       ),
     );
   }
@@ -112,8 +114,10 @@ class ChatingSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        //----------------------------------------------
+        //--------Entete de la page de Chat ------------
+        //----------------------------------------------
         Column(
           children: [
             Text(
@@ -135,6 +139,9 @@ class ChatingSection extends StatelessWidget {
             SizedBox(height: 45),
           ],
         ),
+        //------------------------------------------------
+        //--------Listing ds message du Chat--------------
+        //------------------------------------------------
         Column(
           children: [
             Row(
@@ -417,7 +424,7 @@ class ChatingSection extends StatelessWidget {
                     right: 26,
                   ),
                   width: 215,
-                  height: 157,
+                  height: 150,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/avatar/a1.jpg'),
@@ -539,13 +546,16 @@ class ChatingSection extends StatelessWidget {
                       bottomRight: Radius.circular(15),
                     ),
                   ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.play_circle_outline,
+                          color: Colors.white,
+                        ),
+                        onPressed: null,
+                      ),
+                    ],
                   ),
                 ),
                 Container(
@@ -566,12 +576,78 @@ class ChatingSection extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 40),
           ],
         ),
+        //-------------------------------------------------
+        //-------Champs de texte d'envoi de message
+        //-------------------------------------------
         Row(
           children: [
-            //Container(),
-            //Container(),
+            Container(
+              width: 290,
+              height: 43,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Icon(
+                    Icons.insert_emoticon,
+                    size: 25.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    Icons.upload_outlined,
+                    size: 25.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Icon(
+                    Icons.image,
+                    size: 25.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                left: 20,
+              ),
+              width: 45,
+              height: 45,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.mic_none_sharp,
+                  color: Colors.white,
+                ),
+                onPressed: null,
+              ),
+            ),
           ],
         )
       ],
