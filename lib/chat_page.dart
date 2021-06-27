@@ -72,45 +72,6 @@ class ChatingSection extends StatelessWidget {
   final String senderProfile = 'images/avatar/a3.jpg';
   final String receiverProfile = 'images/avatar/a6.jpg';
 
-  final List chatMessages = [
-    //1: Text 2: image 3: audio
-    {
-      'type': 1,
-      'view': '17.14',
-      'content': 'But I must explain to',
-      'sender': true,
-    },
-    {
-      'type': 1,
-      'view': '17.35',
-      'content': 'Lorem Ipsum dolor sit amel',
-      'sender': false,
-    },
-    {
-      'type': 1,
-      'view': '19.17',
-      'content': 'Lorem Ipsum dolor sit',
-      'sender': true,
-    },
-    {
-      'type': 2,
-      'view': '17.45',
-      'content': 'images/avatar/a4.jpg',
-      'sender': true,
-    },
-    {
-      'type': 1,
-      'view': '17.45',
-      'content': 'Lorem Ipsum dolor sit amel, consetetur sadipshing elitr, sed',
-      'sender': true,
-    },
-    {
-      'type': 3,
-      'view': '22.45',
-      'content': 'Lorem Ipsum dolor sit amel, consetetur sadipshing elitr, sed',
-      'sender': false,
-    },
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(

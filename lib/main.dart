@@ -59,7 +59,10 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          children: [MenuSection(), MainSection()],
+          children: [
+            MenuSection(),
+            MainSection(),
+          ],
         ),
       ),
     );
@@ -102,15 +105,11 @@ class MainSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /* constraints: BoxConstraints.expand(
-        height: double.infinity,
-        width: double.infinity,
-      ), */
       child: Stack(
         children: [
           Container(
             padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-            height: 500,
+            height: double.infinity,
             width: 500,
             decoration: BoxDecoration(
               color: primaryColor,
@@ -125,7 +124,7 @@ class MainSection extends StatelessWidget {
             top: 200,
             child: Container(
               padding: EdgeInsets.all(25),
-              height: 500,
+              //height: 500,
               width: 430,
               color: Colors.white,
               child: MessagesSection(),
