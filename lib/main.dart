@@ -7,6 +7,9 @@ void main() {
   runApp(MyApp());
 }
 
+//---------------------------------------------------------------------------------------
+//--------Déclaration des couleurs principale du design de notre application ------------
+//---------------------------------------------------------------------------------------
 const primaryColor = Color.fromRGBO(39, 193, 169, 1.0);
 const conversationColor = Color.fromRGBO(239, 255, 252, 1.0);
 const backgroundColor = Colors.black;
@@ -57,18 +60,47 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: primaryColor,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            MenuSection(),
-            MainSection(),
-          ],
-        ),
+      body: Column(
+        children: [
+          MenuSection(),
+          Container(
+            child: Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                  height: 695,
+                  width: 500,
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(40),
+                    ),
+                  ),
+                  child: FavoriteSection(),
+                ),
+                Positioned(
+                  top: 184,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(34, 20, 46, 0),
+                    height: 695,
+                    width: 430,
+                    color: Colors.white,
+                    child: MessagesSection(),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
 }
 
+//-----------------------------------------------------------
+//--------Onglet de la page d'accueil -------------
+//-----------------------------------------------------------
 class MenuSection extends StatelessWidget {
   final List menuItems = ["Message", "Online", "Groups", "Calls"];
   @override
@@ -101,41 +133,9 @@ class MenuSection extends StatelessWidget {
   }
 }
 
-class MainSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-            height: double.infinity,
-            width: 500,
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(40),
-                topLeft: Radius.circular(40),
-              ),
-            ),
-            child: FavoriteSection(),
-          ),
-          Positioned(
-            top: 200,
-            child: Container(
-              padding: EdgeInsets.all(25),
-              //height: 500,
-              width: 430,
-              color: Colors.white,
-              child: MessagesSection(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
+//-----------------------------------------------------------
+//--------Widget de definition des contacts favoris-------------
+//-----------------------------------------------------------
 class FavoriteSection extends StatelessWidget {
   final List favoriteContacts = [
     {
@@ -225,6 +225,9 @@ class FavoriteSection extends StatelessWidget {
   }
 }
 
+//-----------------------------------------------------------
+//-------- Widget listant les messages reçus-----------------
+//-----------------------------------------------------------
 class MessagesSection extends StatelessWidget {
   final List messages = [
     {
@@ -274,88 +277,91 @@ class MessagesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: messages.map((message) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatPage()),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      right: 16,
-                    ),
-                    //padding: EdgeInsets.all(4),
-                    width: 70,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(message['senderProfile']),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        message['senderName'],
-                        style: GoogleFonts.inter(
-                          color: Colors.grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        message['message'],
-                        style: GoogleFonts.inter(
-                          color: Colors.black87,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Row(
+        return GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatPage()),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 26),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(message['date']),
-                    message['unRead'] != 0
-                        ? Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              message['unRead'].toString(),
-                              style: GoogleFonts.inter(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          )
-                        : Container(),
+                    Container(
+                      margin: EdgeInsets.only(
+                        right: 16,
+                      ),
+                      //padding: EdgeInsets.all(4),
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage(message['senderProfile']),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          message['senderName'],
+                          style: GoogleFonts.inter(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          message['message'],
+                          style: GoogleFonts.inter(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(message['date']),
+                        message['unRead'] != 0
+                            ? Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: primaryColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  message['unRead'].toString(),
+                                  style: GoogleFonts.inter(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                      ],
+                    )
+                  ],
+                ),
+                //SizedBox(height: 10),
               ],
-            )
-          ],
+            ),
+          ),
         );
       }).toList(),
     );
