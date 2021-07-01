@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'chat_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyApp(),
+  );
 }
 
 //---------------------------------------------------------------------------------------
@@ -63,34 +65,26 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           MenuSection(),
-          Container(
-            child: Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                  height: 695,
-                  width: 500,
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40),
-                    ),
-                  ),
-                  child: FavoriteSection(),
-                ),
-                Positioned(
-                  top: 184,
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(34, 20, 46, 0),
-                    height: 695,
-                    width: 430,
-                    color: Colors.white,
-                    child: MessagesSection(),
+          Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
+                height: 695,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(40),
+                    topLeft: Radius.circular(40),
                   ),
                 ),
-              ],
-            ),
+                child: FavoriteSection(),
+              ),
+              Positioned(
+                top: 184,
+                child: MessagesSection(),
+              ),
+            ],
           )
         ],
       ),
@@ -276,94 +270,108 @@ class MessagesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: messages.map((message) {
-        return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ChatPage()),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 26),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        right: 16,
-                      ),
-                      //padding: EdgeInsets.all(4),
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(message['senderProfile']),
-                          fit: BoxFit.cover,
-                        ),
+    return Container(
+      padding: EdgeInsets.fromLTRB(30, 10, 10, 0),
+      height: 650,
+      width: 450,
+      color: Colors.white,
+      child: Column(
+        children: messages.map((message) {
+          return Expanded(
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatPage()),
+              ),
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 23),
+                    width: 62,
+                    height: 62,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(message['senderProfile']),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          message['senderName'],
-                          style: GoogleFonts.inter(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          message['message'],
-                          style: GoogleFonts.inter(
-                            color: Colors.black87,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(message['date']),
-                        message['unRead'] != 0
-                            ? Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: primaryColor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Text(
-                                  message['unRead'].toString(),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 230,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  message['senderName'],
                                   style: GoogleFonts.inter(
-                                    color: Colors.white,
-                                    fontSize: 12,
+                                    color: Colors.grey,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
+                                Wrap(children: [
+                                  Text(
+                                    message['message'],
+                                    style: GoogleFonts.inter(
+                                      color: Colors.black87,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ]),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Text(message['date']),
+                                  message['unRead'] != 0
+                                      ? Container(
+                                          padding: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                            color: primaryColor,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Text(
+                                            message['unRead'].toString(),
+                                            style: GoogleFonts.inter(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
                               )
-                            : Container(),
-                      ],
-                    )
-                  ],
-                ),
-                //SizedBox(height: 10),
-              ],
+                            ],
+                          ),
+                        ],
+                      ),
+                      Container(
+                        color: Colors.grey[400],
+                        width: 264,
+                        height: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      }).toList(),
+          );
+        }).toList(),
+      ),
     );
   }
 }
