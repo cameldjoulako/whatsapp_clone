@@ -62,31 +62,33 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: primaryColor,
       ),
-      body: Column(
-        children: [
-          MenuSection(),
-          Stack(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
-                height: 695,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40),
-                    topLeft: Radius.circular(40),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MenuSection(),
+            Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
+                  height: 695,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(40),
+                    ),
                   ),
+                  child: FavoriteSection(),
                 ),
-                child: FavoriteSection(),
-              ),
-              Positioned(
-                top: 184,
-                child: MessagesSection(),
-              ),
-            ],
-          )
-        ],
+                Positioned(
+                  top: 184,
+                  child: MessagesSection(),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -271,14 +273,14 @@ class MessagesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(30, 10, 10, 0),
+      padding: EdgeInsets.only(left: 30, right: 10, top: 15),
       height: 650,
       width: 450,
       color: Colors.white,
-      child: Column(
-        children: messages.map((message) {
-          return Expanded(
-            child: GestureDetector(
+      child: SingleChildScrollView(
+        child: Column(
+          children: messages.map((message) {
+            return GestureDetector(
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ChatPage()),
@@ -305,6 +307,7 @@ class MessagesSection extends StatelessWidget {
                       Row(
                         children: [
                           Container(
+                            margin: EdgeInsets.only(top: 25),
                             width: 230,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -359,18 +362,24 @@ class MessagesSection extends StatelessWidget {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Container(
                         color: Colors.grey[400],
                         width: 264,
-                        height: 1,
+                        height: 0.5,
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 86,
+                  ),
                 ],
               ),
-            ),
-          );
-        }).toList(),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

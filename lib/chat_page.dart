@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:whatsapp_clone/main.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,12 +27,7 @@ class ChatPage extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          ),
+          onPressed: () => Navigator.pop(context),
           icon: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
@@ -53,6 +47,7 @@ class ChatPage extends StatelessWidget {
         backgroundColor: backgroundColor,
       ),
       body: Container(
+        height: double.infinity,
         padding: EdgeInsets.fromLTRB(25, 18, 15, 30),
         decoration: BoxDecoration(
           color: conversationColor,
@@ -63,6 +58,83 @@ class ChatPage extends StatelessWidget {
         ),
         margin: EdgeInsets.only(top: 10),
         child: SingleChildScrollView(child: ChatingSection()),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 10.0,
+        color: conversationColor,
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 290,
+                height: 43,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Icon(
+                      Icons.insert_emoticon,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.upload_outlined,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                    Icon(
+                      Icons.image,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  left: 20,
+                ),
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.mic_none_sharp,
+                    color: Colors.white,
+                  ),
+                  onPressed: null,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -105,512 +177,461 @@ class ChatingSection extends StatelessWidget {
         //------------------------------------------------
         Column(
           children: [
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    right: 16,
-                    //left: 20,
-                  ),
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(senderProfile),
-                      fit: BoxFit.cover,
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      //left: 20,
                     ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    right: 26,
-                  ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
-                      color: primaryColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Text(
-                      "17:14",
-                      style: GoogleFonts.inter(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "17:14",
-                      style: GoogleFonts.inter(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                  ],
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    left: 26,
-                  ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 16,
-                    //left: 20,
-                  ),
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(receiverProfile),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "17:14",
-                      style: GoogleFonts.inter(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(senderProfile),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                  ],
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    left: 26,
                   ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      right: 26,
                     ),
-                  ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    right: 16,
-                    //left: 20,
-                  ),
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(senderProfile),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    right: 26,
-                  ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
-                      color: primaryColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Text(
-                      "17:14",
+                    child: Text(
+                      "But I must explain to",
                       style: GoogleFonts.inter(
                         color: primaryColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    right: 16,
-                    //left: 20,
                   ),
-                  width: 45,
-                  height: 45,
-                  /* decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(senderProfile),
-                      fit: BoxFit.cover,
-                    ),
-                  ), */
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    right: 26,
-                  ),
-                  width: 215,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/avatar/a1.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(22.0),
-                    ),
-                  ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Text(
-                      "17:14",
-                      style: GoogleFonts.inter(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    right: 16,
-                    //left: 20,
-                  ),
-                  width: 45,
-                  height: 45,
-                  /* decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(senderProfile),
-                      fit: BoxFit.cover,
-                    ),
-                  ), */
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    right: 26,
-                  ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    "But I must explain to",
-                    style: GoogleFonts.inter(
-                      color: primaryColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "17:14",
-                      style: GoogleFonts.inter(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7.0,
-                    ),
-                    Icon(
-                      Icons.check,
-                      color: primaryColor,
-                      size: 13.0,
-                    ),
-                  ],
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(
-                    left: 26,
-                  ),
-                  padding: EdgeInsets.all(6),
-                  width: 215,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                  child: Row(
+                  Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.play_circle_outline,
-                          color: Colors.white,
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
                         ),
-                        onPressed: null,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 15),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
                       ),
                     ],
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 16,
-                    //left: 20,
-                  ),
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(receiverProfile),
-                      fit: BoxFit.cover,
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      left: 26,
                     ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 40),
-          ],
-        ),
-        //-------------------------------------------------
-        //-------Champs de texte d'envoi de message
-        //-------------------------------------------
-        Row(
-          children: [
-            Container(
-              width: 290,
-              height: 43,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-              ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Icon(
-                    Icons.insert_emoticon,
-                    size: 25.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
+                    ),
+                    child: Text(
+                      "But I must explain to",
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                  Icon(
-                    Icons.upload_outlined,
-                    size: 25.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 8.0,
-                  ),
-                  Icon(
-                    Icons.image,
-                    size: 25.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 10.0,
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 16,
+                      //left: 20,
+                    ),
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(receiverProfile),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(
-                left: 20,
+            SizedBox(height: 5),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      left: 26,
+                    ),
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
+                    ),
+                    child: Text(
+                      "But I must explain to",
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              width: 45,
-              height: 45,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                shape: BoxShape.circle,
+            ),
+            SizedBox(height: 15),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      //left: 20,
+                    ),
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(senderProfile),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      right: 26,
+                    ),
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      "But I must explain to",
+                      style: GoogleFonts.inter(
+                        color: primaryColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-              child: IconButton(
-                icon: Icon(
-                  Icons.mic_none_sharp,
-                  color: Colors.white,
-                ),
-                onPressed: null,
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      //left: 20,
+                    ),
+                    width: 45,
+                    height: 45,
+                    /* decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(senderProfile),
+                        fit: BoxFit.cover,
+                      ),
+                    ), */
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 26,
+                    ),
+                    width: 215,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/avatar/a1.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(22.0),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      //left: 20,
+                    ),
+                    width: 45,
+                    height: 45,
+                    /* decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(senderProfile),
+                        fit: BoxFit.cover,
+                      ),
+                    ), */
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      right: 26,
+                    ),
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      "But I must explain to",
+                      style: GoogleFonts.inter(
+                        color: primaryColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 15),
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "17:14",
+                        style: GoogleFonts.inter(
+                          color: primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7.0,
+                      ),
+                      Icon(
+                        Icons.check,
+                        color: primaryColor,
+                        size: 13.0,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                      left: 26,
+                    ),
+                    padding: EdgeInsets.all(6),
+                    width: 215,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.play_circle_outline,
+                            color: Colors.white,
+                          ),
+                          onPressed: null,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 16,
+                      //left: 20,
+                    ),
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(receiverProfile),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
