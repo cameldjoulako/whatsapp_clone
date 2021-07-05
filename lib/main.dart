@@ -12,9 +12,9 @@ void main() {
 //---------------------------------------------------------------------------------------
 //--------Déclaration des couleurs principale du design de notre application ------------
 //---------------------------------------------------------------------------------------
-const primaryColor = Color.fromRGBO(39, 193, 169, 1.0);
-const conversationColor = Color.fromRGBO(239, 255, 252, 1.0);
-const backgroundColor = Colors.black;
+const dGreen = Color.fromRGBO(39, 193, 169, 1.0);
+const dGreenWhite = Color.fromRGBO(239, 255, 252, 1.0);
+const dBlack = Colors.black;
 
 class MyApp extends StatelessWidget {
   @override
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: dBlack,
       appBar: AppBar(
         leading: IconButton(
           onPressed: null,
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ],
-        backgroundColor: backgroundColor,
+        backgroundColor: dBlack,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
           color: Colors.white,
           size: 20,
         ),
-        backgroundColor: primaryColor,
+        backgroundColor: dGreen,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                   height: 695,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: primaryColor,
+                    color: dGreen,
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(40),
                       topLeft: Radius.circular(40),
@@ -102,7 +102,7 @@ class MenuSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: backgroundColor,
+      color: dBlack,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
@@ -343,7 +343,7 @@ class MessagesSection extends StatelessWidget {
                                       ? Container(
                                           padding: EdgeInsets.all(5),
                                           decoration: BoxDecoration(
-                                            color: primaryColor,
+                                            color: dGreen,
                                             shape: BoxShape.circle,
                                           ),
                                           child: Text(
